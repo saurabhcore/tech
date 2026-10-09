@@ -1,0 +1,7 @@
+{
+  "name": "techworld-fullstack",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TechWorld Electronics & Gadgets internship demo with responsive frontend, Express API, SQLite and demo checkout",
+  "scripts": {"start": "npm --prefix backend start", "dev": "npm --prefix backend run dev"}
+}
