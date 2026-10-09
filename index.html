@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <meta name="description" content="TechWorld Pro — thoughtful technology for work, play, and everything in between.">
+  <title>TechWorld — Technology, thoughtfully chosen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="announcement">WELCOME TO THE NEW TECHWORLD <span>·</span> Demo store — no real payments</div>
+  <header class="header">
+    <a class="brand" href="#" aria-label="TechWorld home"><span class="brand-mark">T</span><span>tech<span class="brand-light">world</span><small>TECH THAT MOVES YOU</small></span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#shop">Shop</a><a href="#benefits">Why TechWorld</a><a href="#footer">Support</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="accountBtn" aria-label="Account">♙ <span class="action-label">Account</span></button>
+      <button class="icon-btn cart-trigger" id="cartBtn" aria-label="Shopping cart">▱ <span class="action-label">Cart</span><b id="cartCount">0</b></button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-line"></span> YOUR NEXT UPGRADE STARTS HERE</div>
+        <h1>Technology that<br>keeps you <em>moving.</em></h1>
+        <p>Thoughtfully selected tech for your everyday. Find the tools that make work smoother, play better, and ideas happen.</p>
+        <div class="hero-actions"><a class="btn btn-primary" href="#shop">Explore collection <span>↗</span></a><a class="text-link" href="#benefits">Why shop with us <span>→</span></a></div>
+        <div class="hero-proof"><div class="avatar-stack"><span>R</span><span>A</span><span>M</span></div><div><strong>Built for everyday excellence</strong><small>Good gear. Clear choices. Better days.</small></div></div>
+      </div>
+      <div class="hero-art">
+        <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+        <div class="hero-product laptop"><div class="laptop-screen"><div class="screen-glow"></div><span>CREATE<br>WITHOUT<br>LIMITS<span class="screen-dot">.</span></span></div><div class="laptop-base"></div></div>
+        <div class="float-card card-a"><span class="float-icon">✦</span><div><small>CURATED TECH</small><strong>Made to matter</strong></div></div>
+        <div class="float-card card-b"><span class="sound-icon">♫</span><div><small>EVERYDAY AUDIO</small><strong>Find your focus</strong></div></div>
+        <div class="hero-stamp"><span>TECH<br>FOR YOUR<br>WORLD</span><b>✳</b></div>
+      </div>
+      <div class="hero-bottom"><span>01 / COLLECTIONS</span><span class="scroll-cue">SCROLL TO EXPLORE <span>↓</span></span><span>DESIGNED FOR YOUR EVERYDAY</span></div>
+    </section>
+
+    <section class="trust-strip" id="benefits">
+      <div><span class="trust-icon">◇</span><span><strong>Curated selection</strong><small>Useful tech, picked with care</small></span></div>
+      <div><span class="trust-icon">↗</span><span><strong>Simple shopping</strong><small>A clear, easy experience</small></span></div>
+      <div><span class="trust-icon">♡</span><span><strong>Here to help</strong><small>Support when you need it</small></span></div>
+      <div><span class="trust-icon">◈</span><span><strong>Demo checkout</strong><small>Safe simulated payments</small></span></div>
+    </section>
+
+    <section class="shop-section" id="shop">
+      <div class="section-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> THE COLLECTION</div><h2>Find your <em>next favorite.</em></h2></div><p>Reliable everyday essentials and clever upgrades for your setup.</p></div>
+      <div class="shop-controls"><div class="category-pills" id="categories"><button class="pill active" data-category="">All products</button></div><label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Search the collection..." aria-label="Search products"></label></div>
+      <div class="product-grid" id="productGrid"><div class="loading">Loading the collection…</div></div>
+      <div class="collection-note"><span>✦</span> Good technology should make the everyday feel extraordinary.</div>
+    </section>
+
+    <section class="feature-banner">
+      <div class="feature-copy"><div class="eyebrow light"><span class="eyebrow-line"></span> BETTER BY DESIGN</div><h2>A little more<br><em>thoughtful.</em></h2><p>We believe great technology should be easy to discover, easy to understand, and genuinely useful in your world.</p><a class="btn btn-light" href="#shop">Explore the collection <span>↗</span></a></div>
+      <div class="feature-visual"><div class="feature-ring ring-1"></div><div class="feature-ring ring-2"></div><div class="feature-glyph">✳</div><div class="feature-tag">LESS FRICTION.<br>MORE POSSIBILITIES.</div></div>
+    </section>
+  </main>
+
+  <footer id="footer"><div class="footer-main"><div class="brand footer-brand"><span class="brand-mark">T</span><span>tech<span class="brand-light">world</span><small>TECH THAT MOVES YOU</small></span></div><p>Useful technology for the way you live, work, and create.</p><div class="footer-links"><a href="#shop">Shop</a><a href="#benefits">Our promise</a><button id="ordersBtn">My orders</button><button id="adminBtn">Admin demo</button></div></div><div class="footer-bottom"><span>© 2026 TechWorld. Demo project.</span><span>Demo only · No real payments · Built for learning</span></div></footer>
+
+  <div class="overlay" id="overlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
+    <div class="drawer-head"><div><span class="eyebrow">YOUR SELECTION</span><h3>Your cart <span id="drawerCount">(0)</span></h3></div><button class="close-btn" id="closeCart" aria-label="Close cart">×</button></div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer"><div class="subtotal"><span>Subtotal</span><strong id="cartSubtotal">₹0</strong></div><p>Shipping and taxes are simulated for this demo.</p><button class="btn btn-primary full-width" id="checkoutBtn">Continue to checkout <span>→</span></button><div class="secure-note">◇ DEMO CHECKOUT · NO MONEY WILL BE CHARGED</div></div>
+  </aside>
+
+  <div class="modal-wrap" id="modalWrap" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal" id="modalContent"><button class="close-btn modal-close" id="closeModal" aria-label="Close dialog">×</button><div id="modalBody"></div></div></div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="/app.js"></script>
+</body>
+</html>

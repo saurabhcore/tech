@@ -1,62 +1,99 @@
-# TechWorld — Electronics & Gadgets (Full-Stack Demo)
+# TechWorld Pro — Full-stack demo e-commerce website
 
-A responsive electronics storefront based on internship task **WD-EC-003**. It includes a browser frontend and a working Node.js/Express REST API.
+A professional responsive storefront with a Node.js/Express backend, SQLite database, authentication, cart, order processing, admin dashboard, and **simulation-only checkout**.
 
 ## Features
-- Responsive TechWorld homepage, category cards, product cards and product details
-- Product search, category filtering and sorting
-- Registration and login with bcrypt password hashing and JWT sessions
-- Authenticated cart: add, update quantity and remove items
-- Demo checkout with server-side validation and order history
-- Admin summary endpoint (demo admin email: `admin@techworld.demo`; create an account with this email to view the endpoint)
-- Helmet security headers, JSON request size limit, API rate limiting, input validation
-- Local JSON persistence so the demo works without a database server
+
+- Responsive storefront with product search and category filters
+- Cart with quantity controls and subtotal
+- Customer registration/login with bcrypt password hashing
+- Session-based authentication
+- SQLite persistence for users, products, and orders
+- Server-side price and stock validation during order creation
+- Demo checkout: orders are marked `SIMULATED`; no payment provider is integrated and no money is charged
+- Admin dashboard with summary metrics, order status management, and product creation
+- Helmet security headers, basic authentication rate limiting, request size limits, input validation, and parameterized SQL
+- Demo seed products and admin account
 
 ## Requirements
+
 - Node.js 18 or later
-- Internet connection is not required for API functionality. Google Fonts are optional visual enhancement.
+- npm
 
 ## Run locally
+
 1. Extract the ZIP.
-2. Open a terminal in the `techworld-fullstack` folder.
-3. Run `npm install --prefix backend`.
-4. Run `npm start`.
-5. Open `http://localhost:5000` in your browser.
+2. Open a terminal in the `TechWorld_Pro` folder.
+3. Install dependencies:
 
-The frontend is served by Express and calls the backend at `/api`. Keep the terminal open while presenting.
+   ```bash
+   npm install
+   ```
 
-## API routes
-| Method | Endpoint | Purpose | Auth |
-|---|---|---|---|
-| GET | `/api/health` | API health check | No |
-| GET | `/api/products` | List/search/filter products | No |
-| GET | `/api/products/:id` | Product detail | No |
-| POST | `/api/auth/register` | Create account | No |
-| POST | `/api/auth/login` | Login | No |
-| GET | `/api/auth/me` | Current user | Yes |
-| GET/POST | `/api/cart` | Read cart / add item | Yes |
-| PATCH | `/api/cart/:productId` | Update quantity; 0 removes item | Yes |
-| POST | `/api/orders` | Place a simulated order | Yes |
-| GET | `/api/orders` | Current user's order history | Yes |
-| GET | `/api/admin/summary` | Demo admin summary | Yes, demo email allow-list |
+4. Start the app:
 
-## Important demo notes
-- Checkout is simulated; there is no real payment gateway.
-- Data is stored in `backend/data/store.json`, created on first run. This is a lightweight local demo store, not a production database.
-- For public deployment, set a strong `JWT_SECRET`, restrict CORS to the exact frontend origin, use a managed database such as MongoDB, enable HTTPS, and add proper admin role management. Do not use the fallback JWT secret in a deployed app.
-- Never commit real secrets or real customer data to GitHub.
+   ```bash
+   npm start
+   ```
+
+5. Open `http://localhost:3000` in your browser.
+
+The SQLite database is created automatically at `data/techworld.sqlite` on first run.
+
+## Admin demo login
+
+- Email: `admin@techworld.demo`
+- Password: `Admin@12345`
+
+Use only for a local demonstration. For a real deployment, set a unique `ADMIN_EMAIL`, `ADMIN_PASSWORD`, and strong `SESSION_SECRET` environment variable before the first run. If an admin account has already been seeded, changing the environment values does not automatically reset that existing account.
+
+Example (macOS/Linux):
+
+```bash
+ADMIN_EMAIL="your-admin@example.com" ADMIN_PASSWORD="use-a-long-unique-password" SESSION_SECRET="a-long-random-secret" npm start
+```
+
+PowerShell example:
+
+```powershell
+$env:ADMIN_EMAIL="your-admin@example.com"
+$env:ADMIN_PASSWORD="use-a-long-unique-password"
+$env:SESSION_SECRET="a-long-random-secret"
+npm start
+```
+
+## Presentation walkthrough
+
+1. Open the storefront and demonstrate responsive product cards.
+2. Search for a product and filter by category.
+3. Add an item to the cart and change its quantity.
+4. Register a customer account or sign in.
+5. Place a demo order. The success screen clearly states that no money was charged.
+6. Open **Admin demo**, sign in, and show the order record and simulated order value.
+7. Change the order status or add a product in the admin panel.
+8. Restart the server to demonstrate that products and orders persist in SQLite.
+
+## API overview
+
+- `GET /api/health`
+- `GET /api/products`
+- `GET /api/categories`
+- `POST /api/auth/register`
+- `POST /api/auth/login`
+- `POST /api/auth/logout`
+- `GET /api/auth/me`
+- `POST /api/orders`
+- `GET /api/orders/mine`
+- `GET /api/admin/summary` (admin)
+- `GET /api/admin/orders` (admin)
+- `POST /api/admin/products` (admin)
+- `PATCH /api/admin/orders/:id` (admin)
+- `DELETE /api/admin/products/:id` (admin)
+
+## Important limitations
+
+This is a local educational/demo project, not a production commerce system. Express's default in-memory session store is used for simplicity and is not appropriate for multi-instance production deployment. Before public production use, configure a persistent session store, HTTPS, CSRF protection where applicable, stronger operational logging, backups, privacy/legal pages, and a proper payment provider only if real payments are ever intended. **No real payment gateway is included in this project.**
 
 ## GitHub upload
-Upload the complete `techworld-fullstack` folder contents, including `frontend`, `backend`, and this README. Do not upload `node_modules` if created. Add a `.gitignore` before committing if you add local environment files.
 
-
-## Payment screen (presentation/demo mode)
-
-The checkout uses a **simulated payment flow only**. It does not contact Razorpay or any other payment provider, does not request card/bank details, and does not charge money. After valid delivery details are submitted, the backend creates an order marked as a demo/simulated payment so you can demonstrate the checkout and order-confirmation flow during your presentation.
-
-- Demo endpoint: `POST /api/payments/demo` (requires login)
-- Payment config: `GET /api/payment/config` reports `mode: simulation` and `realPaymentsEnabled: false`
-- No payment gateway API keys are required.
-- Do not describe the simulated payment as a real gateway integration. A real gateway would require separate provider onboarding, test credentials, server-side verification, webhooks, HTTPS, and security review.
-
-The sample stores data in local JSON for learning/presentation use. For public production use, move to a managed database, configure HTTPS and restricted CORS, and review all security and deployment settings.
+Upload the extracted project folder to a new GitHub repository. Do not upload `node_modules`, `.env`, or the generated `data/` database file. The `.gitignore` already excludes them.
